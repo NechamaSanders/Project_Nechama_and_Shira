@@ -1,0 +1,7 @@
+const User = require('../models/userModel');
+const baseController = require('./baseController');
+
+module.exports = {
+    getAllUsers: baseController.getAll(User),
+    createUser: baseController.createOne(User)
+};
