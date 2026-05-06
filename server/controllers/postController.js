@@ -1,4 +1,4 @@
-const Post = require('../models/postModel');
+const Post = require('../../database/models/postModel');
 const baseController = require('./baseController');
 
 module.exports = {
