@@ -1,4 +1,4 @@
-const Todo = require('../../database/models/todoModel');
+const Todo = require('../DAL/models/todoModel');
 const baseController = require('./baseController');
 
 module.exports = {

@@ -1,4 +1,4 @@
-const User = require('../../database/models/userModel');
+const User = require('../DAL/models/userModel');
 const baseController = require('./baseController');
 
 module.exports = {
