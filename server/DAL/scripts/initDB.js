@@ -16,10 +16,10 @@ const initializeDatabase = async () => {
             await db.query(query);
         }
 
-        console.log("✅ Database initialized successfully!");
+        console.log("Database initialized successfully!");
         process.exit(0); 
     } catch (err) {
-        console.error("❌ Error initializing database:", err.message);
+        console.error("Error initializing database:", err.message);
         process.exit(1); 
     }
 };

@@ -6,8 +6,7 @@ const apiRoutes = require('./routes/index');
 
 const app = express();
 
-// // Middlewares
-// app.use(cors());
+ app.use(cors());
  app.use(express.json());
 
 app.use('/api', apiRoutes);

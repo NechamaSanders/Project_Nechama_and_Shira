@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext, useMemo } from "react";
+import { useForm } from "react-hook-form";
 import apiService from "../services/apiService";
 import { appContext } from "../app";
 import Post from "./Post";
@@ -7,6 +8,7 @@ export default function Posts() {
     const [posts, setPosts] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const { user } = useContext(appContext);
+    const { register, handleSubmit, reset } = useForm();
 
     useEffect(() => {
         const fetchPosts = async () => {

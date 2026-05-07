@@ -10,6 +10,8 @@ const apiService = {
     },
 
     create: (resource, data) => {
+        console.log("creating ");
+        
         return fetchData(`/${resource}`, {
             method: 'POST',
             body: JSON.stringify(data)

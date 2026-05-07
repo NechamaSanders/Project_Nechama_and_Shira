@@ -16,7 +16,6 @@ const createOne = (Model) => async (req, res) => {
     }
 };
 
-// אפשר להוסיף כאן גם getAllOne וכו'
 const getAll = (Model) => async (req, res) => {
     try {
         const items = await Model.getAll();

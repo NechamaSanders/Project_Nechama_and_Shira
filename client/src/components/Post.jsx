@@ -40,7 +40,7 @@ export default function Post({ post, onUpdate, onDelete }) {
         </div>
       ) : (
         <div className="view-mode">
-            <div className="post-content" onClick={toggleComments} style={{ cursor: 'pointer' }}>
+            <div className="post-content"  style={{ cursor: 'pointer' }}>
         <small>Published by User: {post.userId}</small>
           <h3>{post.title}</h3>
           <p>{post.body}</p>

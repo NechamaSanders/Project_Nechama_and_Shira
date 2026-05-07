@@ -1,18 +1,16 @@
 import { useState, createContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import "./App.css";
-import "./index.css";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
 import Home from "./components/Home.jsx";
 import Posts from "./components/Posts.jsx";
 import Post from "./components/Post.jsx";
-import Tasks from "./components/Tasks.jsx";
-import Task from "./components/Task.jsx";
+import Todos from "./components/Todos.jsx";
+import Todo from "./components/Todo.jsx";
 import Info from "./components/Info.jsx";
 import NavBar from "./components/Navbar.jsx";
-import ErrorPage from "./components/ErrorPage.jsx";
-import { AccessDenied } from "./components/AccessDenied.jsx";
+//import ErrorPage from "./components/ErrorPage.jsx";
+//import { AccessDenied } from "./components/AccessDenied.jsx";
 
 export const appContext = createContext();
 function App() {
@@ -31,8 +29,8 @@ function App() {
                         <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
                         <Route path="/users/:username">
                             <Route path="info" element={<Info />} />
-                            <Route path="todos" element={<Tasks />}>
-                                <Route path=":id" element={<Task />} />
+                            <Route path="todos" element={<Todos />}>
+                                <Route path=":id" element={<Todo />} />
                             </Route>
                             <Route path="posts" element={<Posts />}>
                                 <Route path=":id" element={<Post />} />
@@ -40,8 +38,6 @@ function App() {
                         </Route>
                         <Route path="/posts" element={<Posts />} />
 
-                        <Route path="/access_denied" element={<AccessDenied />} />
-                        <Route path="*" element={<ErrorPage />} />
                     </Routes></main></div>
         </appContext.Provider>
     );
