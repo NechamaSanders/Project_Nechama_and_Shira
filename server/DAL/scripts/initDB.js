@@ -5,7 +5,7 @@ const db = require('../config/db');
 
 const initializeDatabase = async () => {
     try {
-        const sqlPath = path.join(__dirname, '..', 'sql', 'schema.sql');
+        const sqlPath = path.join(__dirname, '..','..','..', 'database', 'schema.sql');
         const sql = fs.readFileSync(sqlPath, 'utf8');
 
         console.log("Starting database initialization...");
