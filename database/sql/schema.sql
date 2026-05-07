@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `project_db-0`;
-USE `project_db-0`; 
+CREATE DATABASE IF NOT EXISTS `project_db`;
+USE `project_db`; 
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int NOT NULL AUTO_INCREMENT,

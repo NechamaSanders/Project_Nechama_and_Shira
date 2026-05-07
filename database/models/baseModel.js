@@ -25,4 +25,17 @@ const create = async (tableName, data) => {
     const [result] = await db.query(sql, values);
     return result.insertId;
 };
-module.exports = { getAll, getById, getByColumn, create };
+
+const update = async (tableName, id, data) => {
+    const keys = Object.keys(data);
+    const values = Object.values(data);
+    const setClause = keys.map(k => `${k} = ?`).join(', ');
+    const [result] = await db.query(`UPDATE ${tableName} SET ${setClause} WHERE id = ?`, [...values, id]);
+    return result.affectedRows;
+};
+
+const remove = async (tableName, id) => {
+    const [result] = await db.query(`DELETE FROM ${tableName} WHERE id = ?`, [id]);
+    return result.affectedRows;
+};
+module.exports = { getAll, getById, getByColumn, create, update, remove };
