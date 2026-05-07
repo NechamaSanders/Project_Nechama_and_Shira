@@ -4,7 +4,7 @@ const todoController = require('../controllers/todoController');
 
 router.get('/', todoController.getAllTodos);
 router.get('/:id', todoController.getTodoById);
-router.get('/user/:userId', todoController.getTodoByUser);
+router.get('/user/:userId', todoController.getByUserId);
 router.post('/', todoController.createTodo);
 router.put('/:id', todoController.updateTodo);
 router.delete('/:id', todoController.deleteTodo);
