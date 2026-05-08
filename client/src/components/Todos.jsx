@@ -19,7 +19,7 @@ export default function Todos() {
 
   useEffect(() => {
     if (!user) return navigate("/login");
-    if (urlUserId !== String(user.id)) return navigate("/access_denied");
+    //if (urlUserId !== String(user.id)) return navigate("/access_denied");
 
     const loadTodos = async () => {
       try {

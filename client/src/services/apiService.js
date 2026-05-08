@@ -8,10 +8,12 @@ const apiService = {
     getById: (resource, id) => {
         return fetchData(`/${resource}/${id}`);
     },
-
+    getByUserId: (resource, id) => {
+        return fetchData(`/${resource}/users/${id}`);
+    },
     create: (resource, data) => {
         console.log("creating ");
-        
+
         return fetchData(`/${resource}`, {
             method: 'POST',
             body: JSON.stringify(data)

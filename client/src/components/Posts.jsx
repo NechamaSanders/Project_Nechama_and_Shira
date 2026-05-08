@@ -35,11 +35,27 @@ export default function Posts() {
                 ...data,
                 userId: user.id
             });
+            console.log(newPost);
+
             setPosts(prev => [newPost, ...prev]);
             reset();
         } catch (err) {
             alert("Could not add Post");
         }
+    };
+    const handleUpdate = async (postId, updates) => {
+        try {
+            const updated = await apiService.update('posts', postId, updates);
+            setPosts(prev => prev.map(p => p.id === postId ? {...p,...updated} : p));
+        } catch (err) { alert(err.message); }
+    };
+
+    const handleDelete = async (postId) => {
+        if (!window.confirm("Delete?")) return;
+        try {
+            await apiService.remove('posts', postId);
+            setPosts(prev => prev.filter(p => p.id !== postId));
+        } catch (err) { alert(err.message); }
     };
 
     return (
@@ -55,14 +71,14 @@ export default function Posts() {
                 />
             </div>
             <form onSubmit={handleSubmit(handleAddPost)} className="add-post-form">
-                <input {...register("title", { required: true })} placeholder="כותרת הפוסט" />
-                <textarea {...register("body", { required: true })} placeholder="מה על לבך?" />
-                <button type="submit">פרסם פוסט</button>
+                <input {...register("title", { required: true })} placeholder="Post title..." />
+                <textarea {...register("body", { required: true })} placeholder="What's on your mind?" />
+                <button type="submit">Publish Post</button>
             </form>
             {
                 <div className="posts-list">
                     {filteredPosts.map(post => (
-                        <Post key={post.id} post={post} />
+                        <Post key={post.id} post={post} onUpdate={handleUpdate} onDelete={handleDelete} />
                     ))}
                 </div>
             }

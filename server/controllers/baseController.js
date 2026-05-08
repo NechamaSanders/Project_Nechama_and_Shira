@@ -8,14 +8,13 @@ const createOne = (Model) => async (req, res) => {
 
         const newId = await Model.create(data);
         res.status(201).json({ 
-            message: "Item created successfully", 
+            ...data,
             id: newId 
         });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 };
-
 const getAll = (Model) => async (req, res) => {
     try {
         const items = await Model.getAll();
@@ -29,7 +28,7 @@ const updateOne = (Model) => async (req, res) => {
     try {
         const affected = await Model.update(req.params.id, req.body);
         if (!affected) return res.status(404).json({ message: "Item not found" });
-        res.json({ message: "Item updated successfully" });
+        res.json(affected);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
