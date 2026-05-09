@@ -8,13 +8,25 @@ const authService = {
             if (user) {
                 localStorage.setItem("current-user", JSON.stringify(user));
             }
-            
+
             return user;
         } catch (error) {
             throw error;
         }
     },
+    register: async (newUser) => {
+        try {
+            const user = await apiService.create('login/register', newUser);
 
+            if (user) {
+                localStorage.setItem("current-user", JSON.stringify(user));
+            }
+
+            return user;
+        } catch (error) {
+            throw error;
+        }
+    },
     logout: () => {
         localStorage.removeItem("current-user");
     },

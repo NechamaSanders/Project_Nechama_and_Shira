@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import apiService from "../services/apiService";
-
+import { useState, useContext } from "react";
+import authService from "../services/authService";
+import { appContext } from "../app";
 export default function Register() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [serverError, setServerError] = useState(null);
+    const { setUser } = useContext(appContext);
     const navigate = useNavigate();
 
     const password = watch("password");
@@ -26,10 +27,11 @@ export default function Register() {
                 password: data.password
             };
 
-            await apiService.create('users', newUser);
+            const userData =await authService.register(newUser);
 
-            alert("Registration succeeded! Now you can log in");
-            navigate("/login");
+            alert("Registration succeeded!");
+            setUser(userData);
+            navigate("/");
 
         } catch (err) {
             setServerError(err.message || "Error in registration process");

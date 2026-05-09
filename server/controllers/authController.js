@@ -19,5 +19,20 @@ const login = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 };
+const register = async (req, res) => {
+    try {
+        const { password, ...userData } = req.body;
+        const userId = await User.create(userData);
 
-module.exports = { login };
+        await User.createPassword({ userId, password });
+
+        const user = await User.getById(userId);
+
+        res.status(201).json(user);
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
+module.exports = { login, register };
