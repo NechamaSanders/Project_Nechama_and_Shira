@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const userRoutes = require('./userRoutes');
-const postRoutes = require('./postRoutes');
-const todoRoutes = require('./todoRoutes');
-const commentRoutes = require('./commentRoutes');
-const loginRoutes=require('./authRoutes');
+import userRoutes from './userRoutes.js';
+import postRoutes from './postRoutes.js';
+import todoRoutes from './todoRoutes.js';
+import commentRoutes from './commentRoutes.js';
+import loginRoutes from './authRoutes.js';
 
 router.use('/users', userRoutes);
 router.use('/posts', postRoutes);
@@ -13,4 +13,4 @@ router.use('/todos', todoRoutes);
 router.use('/comments', commentRoutes);
 router.use('/login', loginRoutes);
 
-module.exports = router;
+export default router;

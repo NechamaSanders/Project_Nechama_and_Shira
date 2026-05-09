@@ -1,7 +1,7 @@
-const Comment = require('../DAL/models/commentModel');
-const baseController = require('./baseController');
+import Comment from '../DAL/models/commentModel.js';
+import baseController from './baseController.js';
 
-module.exports = {
+const commentController={
     getAllComments: baseController.getAll(Comment),
     getCommentById: baseController.getById(Comment, 'Comment'),
     getCommentByUser: baseController.getByUserId(Comment),
@@ -10,3 +10,4 @@ module.exports = {
     updateComment: baseController.updateOne(Comment),
     deleteComment: baseController.deleteOne(Comment)
 };
+export default commentController;

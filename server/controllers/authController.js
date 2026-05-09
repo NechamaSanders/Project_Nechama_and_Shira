@@ -1,4 +1,4 @@
-const User = require('../DAL/models/userModel');
+import User from '../DAL/models/userModel.js';
 
 const login = async (req, res) => {
     try {
@@ -35,4 +35,4 @@ const register = async (req, res) => {
     }
 }
 
-module.exports = { login, register };
+export default { login, register };

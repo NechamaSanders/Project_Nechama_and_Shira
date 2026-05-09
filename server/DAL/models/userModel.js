@@ -1,4 +1,4 @@
-const baseModel = require('./baseModel');
+import baseModel from './baseModel.js';
 
 const User = {
     getAll: () => baseModel.getAll('users'),
@@ -11,4 +11,4 @@ const User = {
     remove: (id) => baseModel.remove('users', id)
 };
 
-module.exports = User;
+export default User;

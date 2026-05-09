@@ -1,4 +1,4 @@
-const baseModel = require('./baseModel');
+import baseModel from './baseModel.js';
 
 const Todo = {
     getAll: () => baseModel.getAll('todos'),
@@ -9,4 +9,4 @@ const Todo = {
     remove: (id) => baseModel.remove('todos', id)
 };
 
-module.exports = Todo;
+export default Todo;

@@ -1,6 +1,6 @@
-const express = require('express');
+import express from'express';
 const router = express.Router();
-const todoController = require('../controllers/todoController');
+import todoController from '../controllers/todoController.js';
 
 router.get('/', todoController.getAllTodos);
 router.get('/:id', todoController.getTodoById);
@@ -9,4 +9,4 @@ router.post('/', todoController.createTodo);
 router.put('/:id', todoController.updateTodo);
 router.delete('/:id', todoController.deleteTodo);
 
-module.exports = router;
+export default router;

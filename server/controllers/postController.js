@@ -1,7 +1,7 @@
-const Post = require('../DAL/models/postModel');
-const baseController = require('./baseController');
+import Post from '../DAL/models/postModel.js';
+import baseController from './baseController.js';
 
-module.exports = {
+const postController = {
     getAllPosts: baseController.getAll(Post),
     getPostById: baseController.getById(Post, 'Post'),
     getPostByUser: baseController.getByUserId(Post),
@@ -9,3 +9,4 @@ module.exports = {
     updatePost: baseController.updateOne(Post),
     deletePost: baseController.deleteOne(Post)
 };
+export default postController;

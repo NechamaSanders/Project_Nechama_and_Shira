@@ -1,4 +1,4 @@
-const db = require('../config/db');
+import db from '../config/db.js';
 
 const getAll = async (tableName) => {
     const [rows] = await db.query(`SELECT * FROM ${tableName}`);
@@ -46,4 +46,4 @@ const remove = async (tableName, id) => {
     const [result] = await db.query(`DELETE FROM ${tableName} WHERE id = ?`, [id]);
     return result.affectedRows;
 };
-module.exports = { getAll, getById, getUserPassword, getByColumn, create, update, remove };
+export default { getAll, getById, getUserPassword, getByColumn, create, update, remove };

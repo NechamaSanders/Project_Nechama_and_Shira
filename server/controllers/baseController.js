@@ -71,4 +71,4 @@ const getByPostId = (Model) => async (req, res) => {
     }
 };
 
-module.exports = { createOne, getAll, getById, getByUserId, getByPostId, updateOne, deleteOne };
+export default { createOne, getAll, getById, getByUserId, getByPostId, updateOne, deleteOne };

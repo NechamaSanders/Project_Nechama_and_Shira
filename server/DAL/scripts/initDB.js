@@ -1,11 +1,12 @@
-require('dotenv').config();
-const fs = require('fs');
-const path = require('path');
-const db = require('../config/db'); 
+import dotenv from 'dotenv';
+dotenv.config();
+import fs from 'fs';
+import  path from 'path';
+import db from '../config/db.js';
 
 const initializeDatabase = async () => {
     try {
-        const sqlPath = path.join(__dirname, '..','..','..', 'database', 'schema.sql');
+        const sqlPath = path.join(__dirname, '..', '..', '..', 'database', 'schema.sql');
         const sql = fs.readFileSync(sqlPath, 'utf8');
 
         console.log("Starting database initialization...");
@@ -17,10 +18,10 @@ const initializeDatabase = async () => {
         }
 
         console.log("Database initialized successfully!");
-        process.exit(0); 
+        process.exit(0);
     } catch (err) {
         console.error("Error initializing database:", err.message);
-        process.exit(1); 
+        process.exit(1);
     }
 };
 

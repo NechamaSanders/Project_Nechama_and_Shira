@@ -1,4 +1,4 @@
-const baseModel = require('./baseModel');
+import baseModel from './baseModel.js';
 
 const Post = {
     getAll: () => baseModel.getAll('posts'),
@@ -7,6 +7,6 @@ const Post = {
     create: (postData) => baseModel.create('posts', postData),
     update: (id, data) => baseModel.update('posts', id, data),
     remove: (id) => baseModel.remove('posts', id)
-};
+}
 
-module.exports = Post;
+export default Post;

@@ -1,4 +1,4 @@
-const baseModel = require('./baseModel');
+import baseModel from './baseModel.js';
 
 const Comment = {
     getAll: () => baseModel.getAll('comments'),
@@ -10,4 +10,4 @@ const Comment = {
     remove: (id) => baseModel.remove('comments', id)
 };
 
-module.exports = Comment;
+export default Comment;
