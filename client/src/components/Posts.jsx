@@ -46,6 +46,8 @@ export default function Posts() {
     const handleUpdate = async (postId, updates) => {
         try {
             const updated = await apiService.update('posts', postId, updates);
+            console.log(updated);
+            
             setPosts(prev => prev.map(p => p.id === postId ? {...p,...updated} : p));
         } catch (err) { alert(err.message); }
     };

@@ -38,8 +38,11 @@ const update = async (tableName, id, data) => {
     const keys = Object.keys(data);
     const values = Object.values(data);
     const setClause = keys.map(k => `${k} = ?`).join(', ');
-    const [result] = await db.query(`UPDATE ${tableName} SET ${setClause} WHERE id = ?`, [...values, id]);
-    return result.affectedRows;
+    await db.query(
+        `UPDATE ${tableName} SET ${setClause} WHERE id = ?`,
+        [...values, id]
+    );
+    return await getById(tableName, id);
 };
 
 const remove = async (tableName, id) => {

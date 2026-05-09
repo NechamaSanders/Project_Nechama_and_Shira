@@ -26,7 +26,7 @@ const getAll = (Model) => async (req, res) => {
 
 const updateOne = (Model) => async (req, res) => {
     try {
-        const affected = await Model.update(req.params.id, req.body);
+        const affected = await Model.update(req.params.id, req.body);      
         if (!affected) return res.status(404).json({ message: "Item not found" });
         res.json(affected);
     } catch (err) {
