@@ -8,7 +8,7 @@ import Todo from "./Todo";
 export default function Todos() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [todos, setTodos] = useState([]);  
-  const { id: urlUserId } = useParams();
+  // const { id: urlUserId } = useParams();
   const { user } = useContext(appContext);
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
@@ -19,18 +19,17 @@ export default function Todos() {
 
   useEffect(() => {
     if (!user) return navigate("/login");
-    //if (urlUserId !== String(user.id)) return navigate("/access_denied");
 
     const loadTodos = async () => {
       try {
-        const data = await apiService.getAll(`todos?userId=${user.id}`);
+        const data = await apiService.getByUserId('todos',user.id);
         setTodos(data);
       } catch (err) {
         alert(err.message);
       } 
     };
     loadTodos();
-  }, [user, urlUserId, navigate]);
+  }, [user, navigate]);
 
   const processedTodos = useMemo(() => {
     let result = [...todos];

@@ -13,7 +13,7 @@ export default function Comments({ postId }) {
     const loadComments = async () => {
       setLoading(true);
       try {
-        const data = await apiService.getAll(`comments?postId=${postId}`);
+        const data = await apiService.getByPostId('comments',postId);
         setComments(data);
       } catch (err) {
         console.error("Failed to load Comments");

@@ -9,12 +9,9 @@ const getById = async (tableName, id) => {
     const [rows] = await db.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id]);
     return rows[0];
 };
-const getByAttribute = async (tableName, attributeName, attribute) => {
-    const [rows] = await db.query(`SELECT * FROM ${tableName} WHERE ${attributeName} = ?`, [attribute]);
-    return rows[0];
-};
 const getUserPassword = async (id) => {
     const [rows] = await db.query(`SELECT password FROM passwords WHERE userId = ?`, [id]);
+    console.log("trying...",id, rows[0]);
     return rows[0];
 };
 
@@ -49,4 +46,4 @@ const remove = async (tableName, id) => {
     const [result] = await db.query(`DELETE FROM ${tableName} WHERE id = ?`, [id]);
     return result.affectedRows;
 };
-module.exports = { getAll, getById, getByAttribute, getUserPassword, getByColumn, create, update, remove };
+module.exports = { getAll, getById, getUserPassword, getByColumn, create, update, remove };

@@ -62,5 +62,13 @@ const getByUserId = (Model) => async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+const getByPostId = (Model) => async (req, res) => {
+    try {
+        const items = await Model.getByPostId(req.params.postId);
+        res.json(items);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
 
-module.exports = { createOne, getAll, getById, getByUserId, updateOne, deleteOne };
+module.exports = { createOne, getAll, getById, getByUserId, getByPostId, updateOne, deleteOne };

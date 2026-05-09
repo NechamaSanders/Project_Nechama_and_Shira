@@ -5,6 +5,7 @@ module.exports = {
     getAllComments: baseController.getAll(Comment),
     getCommentById: baseController.getById(Comment, 'Comment'),
     getCommentByUser: baseController.getByUserId(Comment),
+    getCommentByPost: baseController.getByPostId(Comment),
     createComment: baseController.createOne(Comment),
     updateComment: baseController.updateOne(Comment),
     deleteComment: baseController.deleteOne(Comment)

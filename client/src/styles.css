@@ -250,6 +250,7 @@ textarea {
   padding: 12px;
   border-radius: 10px;
   font-weight: bold;
+  margin:5px;
 }
 
 .login-page button:hover,
