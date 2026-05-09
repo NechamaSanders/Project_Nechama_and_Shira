@@ -15,7 +15,7 @@ export default function NavBar() {
     return (
         <nav className="navbar">
             <div className="nav-logo">
-                <Link typeof="button" to="/">MyProject</Link>
+                <Link typeof="button" to="/">WorkSpace</Link>
             </div>
             <div className="user-greet">{user?(<p>Hello, {user.username}!</p>):(<></>)}</div>
             <ul className="nav-links">
