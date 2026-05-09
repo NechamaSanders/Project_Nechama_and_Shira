@@ -17,15 +17,13 @@ export default function NavBar() {
             <div className="nav-logo">
                 <Link typeof="button" to="/">MyProject</Link>
             </div>
-
+            <div className="user-greet">{user?(<p>Hello, {user.username}!</p>):(<></>)}</div>
             <ul className="nav-links">
                 {user ? (
                     <>
                         <li><Link to={`/users/${user.username}/todos`}>Todos</Link></li>
                         <li><Link to="/posts">Posts</Link></li>
                         <li><Link to={`/users/${user.username}/info`}>Info</Link></li>
-
-                        <li className="user-greet">Hello, {user.username}</li>
                         <li>
                             <button onClick={handleLogout} className="logout-btn">Logout</button>
                         </li>

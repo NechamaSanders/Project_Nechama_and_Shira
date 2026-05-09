@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className="home-container">
       <header className="home-header">
-        <h1> Welcome, {user.name}! </h1>
+        <h1> Welcome, {user.username}! </h1>
         <p>What would you like to do today?</p>
       </header>
 
