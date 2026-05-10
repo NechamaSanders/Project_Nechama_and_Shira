@@ -24,20 +24,16 @@ export default function Posts() {
 
     const filteredPosts = useMemo(() => {
         return posts.filter(post =>
-            post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            String(post.id) === searchQuery
+            (post.title ?? "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+            String(post.userId) === searchQuery
         );
     }, [posts, searchQuery]);
 
     const handleAddPost = async (data) => {
         try {
-            const newPost = await apiService.create('posts', {
-                ...data,
-                userId: user.id
-            });
-            console.log(newPost);
-
-            setPosts(prev => [newPost, ...prev]);
+            const payload = { ...data, userId: user.id };
+            const newPost = await apiService.create('posts', payload);
+            setPosts(prev => [{ ...payload, id: newPost.id }, ...prev]);
             reset();
         } catch (err) {
             alert("Could not add Post");
@@ -45,10 +41,8 @@ export default function Posts() {
     };
     const handleUpdate = async (postId, updates) => {
         try {
-            const updated = await apiService.update('posts', postId, updates);
-            console.log(updated);
-            
-            setPosts(prev => prev.map(p => p.id === postId ? {...p,...updated} : p));
+            await apiService.update('posts', postId, updates);
+            setPosts(prev => prev.map(p => p.id === postId ? { ...p, ...updates } : p));
         } catch (err) { alert(err.message); }
     };
 
@@ -67,7 +61,7 @@ export default function Posts() {
             <div className="search-bar">
                 <input
                     type="text"
-                    placeholder="Search for Post by Title or ID..."
+                    placeholder="Search by Title or User ID..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
@@ -79,7 +73,9 @@ export default function Posts() {
             </form>
             {
                 <div className="posts-list">
-                    {filteredPosts.map(post => (
+                    {filteredPosts.length === 0
+                        ? <p className="no-results">No posts found matching your search.</p>
+                        : filteredPosts.map(post => (
                         <Post key={post.id} post={post} onUpdate={handleUpdate} onDelete={handleDelete} />
                     ))}
                 </div>

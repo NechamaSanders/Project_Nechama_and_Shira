@@ -14,6 +14,9 @@ const apiService = {
     getByPostId: (resource, id) => {
         return fetchData(`/${resource}/post/${id}`);
     },
+    getByPostId: (resource, id) => {
+        return fetchData(`/${resource}/post/${id}`);
+    },
     create: (resource, data) => {
         console.log("creating ");
 

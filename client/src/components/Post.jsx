@@ -12,12 +12,16 @@ export default function Post({ post, onUpdate, onDelete }) {
 
   const handleSave = async () => {
     try {
-      await apiService.update('posts', post.id, editData);
-      onUpdate(post.id, editData);
+      await onUpdate(post.id, editData);
       setEditing(false);
     } catch (err) {
       alert("Error in editing");
     }
+  };
+
+  const handleCancel = () => {
+    setEditData({ title: post.title, body: post.body });
+    setEditing(false);
   };
 
   return (
@@ -33,7 +37,7 @@ export default function Post({ post, onUpdate, onDelete }) {
             onChange={(e) => setEditData({ ...editData, body: e.target.value })}
           />
           <button onClick={handleSave}>Save</button>
-          <button onClick={() => setEditing(false)}>Cancel</button>
+          <button onClick={handleCancel}>Cancel</button>
         </div>
       ) : (
         <div className="view-mode">

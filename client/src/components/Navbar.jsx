@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { appContext } from "../app";
 import authService from "../services/authService";
@@ -21,9 +21,9 @@ export default function NavBar() {
             <ul className="nav-links">
                 {user ? (
                     <>
-                        <li><Link to={`/users/${user.username}/todos`}>Todos</Link></li>
-                        <li><Link to="/posts">Posts</Link></li>
-                        <li><Link to={`/users/${user.username}/info`}>Info</Link></li>
+                        <li><NavLink to={`/users/${user.username}/todos`} className={({isActive}) => isActive ? 'nav-active' : ''}>Todos</NavLink></li>
+                        <li><NavLink to="/posts" className={({isActive}) => isActive ? 'nav-active' : ''}>Posts</NavLink></li>
+                        <li><NavLink to={`/users/${user.username}/info`} className={({isActive}) => isActive ? 'nav-active' : ''}>Info</NavLink></li>
                         <li>
                             <button onClick={handleLogout} className="logout-btn">Logout</button>
                         </li>

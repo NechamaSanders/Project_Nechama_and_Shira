@@ -111,7 +111,7 @@ export default function Todos() {
               onUpdate={handleUpdate} 
             />
           ))
-        ) : <p>No Todos Found </p>}
+        ) : <p className="no-results">No Todos Found</p>}
       </div>
     </div>
   );

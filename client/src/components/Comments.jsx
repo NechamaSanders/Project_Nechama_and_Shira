@@ -28,21 +28,17 @@ export default function Comments({ postId }) {
     e.preventDefault();
     if (!newComment.trim()) return;
     try {
-      const created = await apiService.create('comments', {
-        postId,
-        body: newComment,
-        name: user.username,
-        email: user.email,
-      });
-      setComments(prev => [...prev, created]);
+      const payload = { postId, body: newComment, name: user.username, email: user.email };
+      const created = await apiService.create('comments', payload);
+      setComments(prev => [...prev, { ...payload, id: created.id }]);
       setNewComment("");
     } catch (err) { alert("Error in adding "); }
   };
 
   const handleUpdate = async (id, updates) => {
     try {
-      const updated = await apiService.update('comments', id, updates);
-      setComments(prev => prev.map(c => c.id === id ? updated : c));
+      await apiService.update('comments', id, updates);
+      setComments(prev => prev.map(c => c.id === id ? { ...c, ...updates } : c));
     } catch (err) { alert("Error in updating "); }
   };
 
@@ -62,18 +58,22 @@ export default function Comments({ postId }) {
           onChange={(e) => setNewComment(e.target.value)} 
           placeholder="Add Comment..."
         />
+        <button type="submit">Add</button>
       </form>
 
       {loading ? <p>Loading Comments...</p> : (
         <ul className="comments-list">
-          {comments.map(c => (
-            <Comment
-              key={c.id} 
-              comment={c} 
-              onUpdate={handleUpdate} 
-              onDelete={handleDelete} 
-            />
-          ))}
+          {comments.length === 0
+            ? <p className="no-comments">No comments yet. Be the first to comment!</p>
+            : comments.map(c => (
+              <Comment
+                key={c.id} 
+                comment={c} 
+                onUpdate={handleUpdate} 
+                onDelete={handleDelete} 
+              />
+            ))
+          }
         </ul>
       )}
     </div>

@@ -14,6 +14,11 @@ export default function Todo({ todo, onUpdate, onDelete }) {
         setEditing(false);
     };
 
+    const handleCancel = () => {
+        setNewTitle(todo.title);
+        setEditing(false);
+    };
+
     const toggleComplete = () => {
         onUpdate(todo.id, { completed: !todo.completed });
     };
@@ -29,7 +34,7 @@ export default function Todo({ todo, onUpdate, onDelete }) {
                         autoFocus
                     />
                     <button onClick={saveEdit}>Save</button>
-                    <button onClick={() => setEditing(false)}>Cancel</button>
+                    <button onClick={handleCancel}>Cancel</button>
                 </div>
             ) : (
                 <div className="view-mode">

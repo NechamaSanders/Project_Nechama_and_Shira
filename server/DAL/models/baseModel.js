@@ -46,4 +46,14 @@ const remove = async (tableName, id) => {
     const [result] = await db.query(`DELETE FROM ${tableName} WHERE id = ?`, [id]);
     return result.affectedRows;
 };
-export default { getAll, getById, getUserPassword, getByColumn, create, update, remove };
+const updateByColumn = async (tableName, columnName, value, data) => {
+    const keys = Object.keys(data);
+    const values = Object.values(data);
+    const setClause = keys.map(k => `${k} = ?`).join(', ');
+    await db.query(
+        `UPDATE ${tableName} SET ${setClause} WHERE ${columnName} = ?`,
+        [...values, value]
+    );
+};
+
+export default { getAll, getById, getUserPassword, getByColumn, create, update, updateByColumn, remove };

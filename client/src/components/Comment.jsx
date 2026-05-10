@@ -15,6 +15,11 @@ export default function Comment({ comment, onUpdate, onDelete }) {
     setIsEditing(false);
   };
 
+  const handleCancel = () => {
+    setEditBody(comment.body);
+    setIsEditing(false);
+  };
+
   return (
     <li className="comment-item">
       {isEditing ? (
@@ -24,7 +29,7 @@ export default function Comment({ comment, onUpdate, onDelete }) {
             onChange={(e) => setEditBody(e.target.value)} 
           />
           <button onClick={handleSave}>Save</button>
-          <button onClick={() => setIsEditing(false)}>Cancel</button>
+          <button onClick={handleCancel}>Cancel</button>
         </div>
       ) : (
         <div className="comment-view">
